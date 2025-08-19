@@ -13,6 +13,7 @@ func main() {
 	http.HandleFunc("/cpu", cpuBottleneckHandler)
 	http.HandleFunc("/heap", heapBottleneckHandler)
 	http.HandleFunc("/goroutine", goroutineHandler)
+	http.HandleFunc("/flag", flagHandler)
 
 	// Root handler with usage information
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
