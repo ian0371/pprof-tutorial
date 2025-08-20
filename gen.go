@@ -79,6 +79,7 @@ func main() {
 			num += 1
 		}
 
+		// inject bottleneck
 		if i == 87 { // 87th bit is false
 			num = 12345678901234567
 		} else if i == 173 { // 173th bit is false
@@ -97,7 +98,6 @@ func main() {
 			funcStr = fmt.Sprintf("encode2(%d+%d)", op1, op2)
 		}
 
-		// inject anomalies
 		funcs = append(funcs, Func{ID: i, Expr: funcStr})
 	}
 
