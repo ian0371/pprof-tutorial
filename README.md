@@ -19,10 +19,10 @@ Available in `/debug/pprof/`.
 - [net/http/pprof](https://pkg.go.dev/net/http/pprof): Package pprof serves via its HTTP server runtime profiling data in the format expected by the pprof visualization tool.
 - [runtime/pprof](https://pkg.go.dev/runtime/pprof): Package pprof writes runtime profiling data in the format expected by the pprof visualization tool.
 
-
 ## Getting Started
 
 1. **Run the server:**
+
    ```bash
    go run .
    ```
@@ -37,6 +37,7 @@ Available in `/debug/pprof/`.
 ```bash
 curl http://localhost:8080/cpu
 curl 'http://localhost:8080/heap?size_mb=500' && curl 'http://localhost:8080/debug/pprof/heap' --output heap.out
+curl 'http://localhost:8080/goroutine' && curl 'http://localhost:8080/debug/pprof/goroutine' --output goroutine.out
 ```
 
 ## How to view profiles
