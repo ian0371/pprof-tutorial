@@ -8,6 +8,7 @@ import (
 	"time"
 )
 
+//go:generate go run gen.go
 func main() {
 	// Setup HTTP handlers
 	http.HandleFunc("/cpu", cpuBottleneckHandler)
