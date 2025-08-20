@@ -6,31 +6,57 @@ import (
 )
 
 func flagHandler(w http.ResponseWriter, r *http.Request) {
-	inputs := []int{10, 20, 30, 40, 42, 50}
-	for _, n := range inputs {
-		fmt.Printf("Secret for %d: %d\n", n, encode(n))
-	}
 	w.Header().Set("Content-Type", "text/plain")
 	w.WriteHeader(http.StatusOK)
-	fmt.Fprint(w, "Done")
+
+	flag := getFlag()
+
+	fmt.Fprint(w, flag)
 }
 
-func encode(n int) int {
-	result := 0
-	for i := 0; i < 100_000; i++ {
-		result += computeLayer1(n, i)
+func getFlag() string {
+	var result []byte
+
+	for i := range funcArr {
+		if funcArr[i]() {
+			result = append(result, '1')
+		} else {
+			result = append(result, '0')
+		}
 	}
-	return result
-}
 
-func computeLayer1(n, i int) int {
-	sum := 0
-	for j := 0; j < 10; j++ {
-		sum += computeLayer2(n, i, j)
+	var chars []byte
+	for i := 0; i < len(result); i += 8 {
+		var ch byte
+		for j := 0; j < 8; j++ {
+			if result[i+j] == '1' {
+				ch = ch<<1 | 1
+			} else {
+				ch = ch << 1
+			}
+		}
+		chars = append(chars, ch)
 	}
-	return sum
+	result = chars
+	return string(result)
 }
 
-func computeLayer2(n, i, j int) int {
-	return (i * j * n) % 123
+// do not modify this function!!
+func encode(n int) bool {
+	ret := true
+	for i := 0; i < n; i++ {
+		ret = !ret
+	}
+	return ret
+}
+
+// do not modify this function!!
+func encode2(n int) bool {
+	ret := true
+	for i := 2; i < n; i++ {
+		if n%i == 0 {
+			ret = false
+		}
+	}
+	return ret
 }

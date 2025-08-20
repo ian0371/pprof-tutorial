@@ -24,7 +24,7 @@ func main() {
 				"/cpu?iterations=N": "CPU-intensive task (default: 100000 iterations)",
 				"/heap?size_mb=N": "Memory-intensive task (default: 50MB)",
 				"/goroutine": "Goroutine-intensive task",
-				"/leak": "Memory leak simulation for profiling",
+				"/flag": "Get the flag!",
 				"/debug/pprof/": "Go pprof profiling endpoints"
 			},
 			"profiling": {
